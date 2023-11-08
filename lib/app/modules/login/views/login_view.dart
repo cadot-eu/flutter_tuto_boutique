@@ -6,8 +6,10 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   LoginView({Key? key}) : super(key: key);
   final controller = Get.put(LoginController());
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController usernameController =
+      TextEditingController(text: 'test@cadot.eu');
+  final TextEditingController passwordController =
+      TextEditingController(text: 'ArowanA');
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
