@@ -1,0 +1,9 @@
+{
+    "id": 15,
+    "email": "test@cadot.eu",
+    "roles": [
+        "ROLE_USER"
+    ],
+    "password": "$2y$13$IzueWiK42CG8nUWN0rv0fuWTNgaNHQ2Ce.mFwbkZ9ujgs0sLHBAY2",
+    "userIdentifier": "test@cadot.eu"
+}

@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:t1/app/modules/login/controllers/login_controller.dart';
 
 import '../../../routes/app_pages.dart';
 
 class SplashController extends GetxController {
-  final GetStorage getStorage = GetStorage();
+  final LoginController loginController = Get.put(LoginController());
 
   @override
   void onInit() {
@@ -15,7 +14,8 @@ class SplashController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    if (getStorage.read('status') != null && getStorage.read('status') != "") {
+    if (loginController.getStorage.read('status') != null &&
+        loginController.getStorage.read('status') != "") {
       Future.delayed(const Duration(seconds: 3), () {
         Get.offAllNamed(Routes.HOME);
       });
