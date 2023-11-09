@@ -7,10 +7,6 @@ class DevantView extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('DevantView'),
-        centerTitle: true,
-      ),
       body: const Center(
         child: Text(
           'DevantView is working',

@@ -7,10 +7,6 @@ class CategorieView extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('CategorieView'),
-        centerTitle: true,
-      ),
       body: const Center(
         child: Text(
           'CategorieView is working',
