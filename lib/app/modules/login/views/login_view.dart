@@ -12,8 +12,6 @@ class LoginView extends GetView<LoginController> {
       TextEditingController(text: 'ArowanA');
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.top]);
     return Scaffold(
       appBar: AppBar(
         title: const Text('LoginView'),

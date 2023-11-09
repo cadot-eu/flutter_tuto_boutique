@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:t1/app/constans.dart';
@@ -11,7 +12,13 @@ class LoginController extends GetxController {
   final GetStorage getStorage = GetStorage();
   late User user;
 
+/* ---------------------------------- login --------------------------------- */
   Future<void> login(String username, String password) async {
+    //vérification
+    if (username.trim().isEmpty || password.trim().isEmpty) {
+      _snack("Error", "Veuillez renseigner tous les champs", "error");
+      return;
+    }
     final responseToken = await http.post(Uri.parse(Const.API_TOKEN),
         headers: Const.HEADER_JSON,
         body: jsonEncode({"username": username, "password": password}));
@@ -28,32 +35,32 @@ class LoginController extends GetxController {
         user = User.fromJson(jsonDecode(responseUser.body));
         getStorage.write('user', user);
         Get.offAllNamed(Routes.HOME);
+        _snack("Success", "Connexion reussie", "success");
       } else {
-        print('Request failed with status code: ${responseUser.statusCode}');
+        _snack(
+            "Error",
+            'Request failed with status code: ${responseUser.statusCode}',
+            "error");
       }
     } else {
-      print('Request failed with status code: ${responseToken.statusCode}');
+      _snack(
+          "Error",
+          'Request failed with status code: ${responseToken.statusCode}',
+          "error");
     }
   }
 
+/* --------------------------------- logout --------------------------------- */
   void logout() {
     getStorage.remove('token');
     getStorage.remove('user');
     Get.offAllNamed(Routes.LOGIN);
   }
 
-  @override
-  Future<void> onInit() async {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
+/* -------------------------------- snackbar -------------------------------- */
+  _snack(String title, String content, String type) {
+    Get.snackbar(title, content,
+        backgroundColor: type == "error" ? Colors.red : Colors.green,
+        colorText: Colors.white);
   }
 }
