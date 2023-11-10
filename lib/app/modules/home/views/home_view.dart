@@ -25,10 +25,6 @@ class HomeView extends GetView<HomeController> {
           TransactionView(),
           ProfilView(),
         ]),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => loginController.logout(),
-          child: const Icon(Icons.logout),
-        ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: controller.tabIndex,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   LoginView({Key? key}) : super(key: key);
   final controller = Get.put(LoginController());
+
   final TextEditingController usernameController =
       TextEditingController(text: 'test@cadot.eu');
   final TextEditingController passwordController =
@@ -14,9 +14,7 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LoginView'),
-        centerTitle: true,
-      ),
+          title: const Text('LoginView'), centerTitle: true, actions: []),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

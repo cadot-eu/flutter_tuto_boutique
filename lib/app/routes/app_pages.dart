@@ -42,7 +42,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ACCUEIL,
-      page: () => const AccueilView(),
+      page: () => AccueilView(),
       binding: AccueilBinding(),
     ),
     GetPage(
