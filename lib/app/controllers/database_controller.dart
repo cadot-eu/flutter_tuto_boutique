@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:sqlite3/sqlite3.dart';
@@ -7,12 +9,11 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
 class DatabaseController extends GetxController {
-  late Database? db;
+  Database? db;
 
 //cette partie ne se lance par automatiquement...????
   @override
   Future<void> onInit() async {
-    await initDatabase();
     super.onInit();
   }
 
@@ -23,10 +24,10 @@ class DatabaseController extends GetxController {
     //on repart de la base de donnée dans asset si on est en debug sinon on garde la base de donnée en local si elle existe
     if (kDebugMode ||
         FileSystemEntity.typeSync(path) == FileSystemEntityType.notFound) {
+      print('initialisation de la database');
       ByteData data = await rootBundle.load(join('assets', 'database.db'));
       List<int> bytes =
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-
       await new File(path).writeAsBytes(bytes);
     }
 
@@ -47,5 +48,15 @@ class DatabaseController extends GetxController {
     stmt.execute([row[fieldName]]);
     stmt.dispose();
     return 1;
+  }
+
+  Future testinsert() async {
+    //on ajoute un string au hazar de 5 characteres
+    String nom = '';
+    for (int i = 0; i < 5; i++) {
+      nom += Random().nextInt(10).toString();
+    }
+    await insert('categories', {"nom": nom});
+    print('Add :' + nom);
   }
 }

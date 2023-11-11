@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:t1/app/controllers/database_controller.dart';
 import 'package:t1/app/modules/login/controllers/login_controller.dart';
 
 import '../controllers/accueil_controller.dart';
@@ -9,10 +10,12 @@ import 'devant_view.dart';
 
 class AccueilView extends GetView<AccueilController> {
   AccueilView({Key? key}) : super(key: key);
+  final accueilController = Get.put(AccueilController());
+  final databaseController = Get.put(DatabaseController());
   final loginController = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
-    final AccueilController _tabs = Get.put(AccueilController());
+    //final AccueilController _tabs = Get.put(AccueilController());
     return Scaffold(
       appBar: AppBar(
         title: const Text('AccueilView'),
@@ -25,7 +28,9 @@ class AccueilView extends GetView<AccueilController> {
             icon: Icon(Icons.logout),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              accueilController.addInsert();
+            },
             icon: Icon(Icons.add),
           ),
         ],
@@ -33,8 +38,8 @@ class AccueilView extends GetView<AccueilController> {
       body: new Column(
         children: [
           TabBar(
-            controller: _tabs.controller,
-            tabs: _tabs.Tabs,
+            controller: accueilController.controller,
+            tabs: accueilController.Tabs,
             labelColor: Colors.blue,
             indicator: BoxDecoration(
                 border: Border(
@@ -46,7 +51,7 @@ class AccueilView extends GetView<AccueilController> {
           ),
           Expanded(
             child: TabBarView(
-              controller: _tabs.controller,
+              controller: accueilController.controller,
               children: [
                 DevantView(),
                 CategorieView(),

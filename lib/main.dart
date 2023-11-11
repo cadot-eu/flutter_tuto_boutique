@@ -9,13 +9,13 @@ import 'app/routes/app_pages.dart';
 
 void main() async {
   await GetStorage.init();
-  final db = DatabaseController();
-  await db.initDatabase();
-  await db.insert('categories', {"nom": "tutu"});
-  final resultSet = await db.select('categories');
-  for (final row in resultSet) {
-    print('[id: ${row['id']}, nom: ${row['nom']}]');
-  }
+  final dbController = Get.put(DatabaseController());
+  await dbController.initDatabase();
+  // dbController.insert('categories', {"nom": "tutu"});
+  // final resultSet = await dbController.select('categories');
+  // for (final row in resultSet) {
+  //   print('[id: ${row['id']}, nom: ${row['nom']}]');
+  // }
 
   runApp(
     GetMaterialApp(
