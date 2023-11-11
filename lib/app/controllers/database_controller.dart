@@ -2,11 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:list_of_words/list_of_words.dart';
 import 'package:sqlite3/sqlite3.dart';
 import 'package:path/path.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:list_of_words/list_of_words.dart';
 
 class DatabaseController extends GetxController {
   Database? db;
@@ -50,13 +52,8 @@ class DatabaseController extends GetxController {
     return 1;
   }
 
-  Future testinsert() async {
-    //on ajoute un string au hazar de 5 characteres
-    String nom = '';
-    for (int i = 0; i < 5; i++) {
-      nom += Random().nextInt(10).toString();
-    }
-    await insert('categories', {"nom": nom});
-    print('Add :' + nom);
+  Future testinsert(String champ) async {
+    await insert('categories',
+        {"nom": french_nouns.elementAt(Random().nextInt(french_nouns.length))});
   }
 }

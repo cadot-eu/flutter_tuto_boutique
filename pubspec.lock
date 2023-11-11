@@ -131,6 +131,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  list_of_words:
+    dependency: "direct main"
+    description:
+      name: list_of_words
+      sha256: "47f2e8b1d34ced490bcbbfad6ccc86171f14d651cd2e0525262e380639c5471c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   matcher:
     dependency: transitive
     description:

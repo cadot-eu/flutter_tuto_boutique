@@ -25,7 +25,7 @@ class AccueilController extends GetxController
 
   addInsert() {
     final dbController = Get.put(DatabaseController());
-    dbController.testinsert();
+    dbController.testinsert('nom');
     getCategorie();
   }
 }
